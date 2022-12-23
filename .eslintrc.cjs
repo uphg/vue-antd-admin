@@ -7,5 +7,11 @@ module.exports = {
     "plugin:vue/essential",
     "eslint:recommended",
     "@vue/eslint-config-typescript/recommended"
-  ]
+  ],
+  rules: {
+    'no-undef': 'off',
+    'vue/multi-word-component-names': 'off',
+
+    '@typescript-eslint/no-explicit-any': 'off'
+  }
 }
