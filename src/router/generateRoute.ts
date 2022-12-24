@@ -1,6 +1,5 @@
 import type { RouteConfig } from "vue-router"
 import Layout from '@/layout/index.vue'
-import { camelize } from '@/utils'
 
 type RouteData = {
   path: string
@@ -10,8 +9,6 @@ type RouteData = {
   meta?: { title: string, icon: string, affix?: 0 | 1 },
   children?: RouteData[]
 }
-
-
 
 const modules = import.meta.glob('../views/**/*.vue')
 
