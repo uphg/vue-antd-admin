@@ -1,13 +1,13 @@
 <template>
-  <a-sub-menu :key="menuInfo.name" v-bind="$props" v-on="$listeners">
+  <a-sub-menu :key="menuInfo?.name" v-bind="$props" v-on="$listeners">
     <span slot="title">
-      <a-icon type="mail" /><span>{{ menuInfo.meta?.title }}</span>
+      <a-icon type="mail" /><span>{{ menuInfo?.meta?.title }}</span>
     </span>
-    <template v-for="item in menuInfo.children">
-      <a-menu-item v-if="!item.children?.length" :key="item.name">
+    <template v-for="item in menuInfo?.children">
+      <a-menu-item v-if="!item?.children?.length" :key="item?.name">
         <SidebarLink :to="item.path">
-          <a-icon v-if="item.meta.icon" :type="item.meta.icon"/>
-          <span>{{ item.meta?.title }}</span>
+          <a-icon v-if="item?.meta.icon" :type="item?.meta.icon"/>
+          <span>{{ item?.meta?.title }}</span>
         </SidebarLink>
       </a-menu-item>
       <sub-menu v-else :key="item?.name" :menu-info="item" />
@@ -21,7 +21,9 @@ import SidebarLink from './Link.vue'
 import type { SubMenu as _SubMenu } from '../../../types/sub-menu'
 
 export default defineComponent({
+  name: 'SubMenu',
   components: { SidebarLink },
+  isSubMenu: true,
   props: {
     ...(Menu.SubMenu as unknown as _SubMenu).props,
     // Cannot overlap with properties within Menu.SubMenu.props
@@ -29,7 +31,6 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
-  },
-  isSubMenu: true
+  }
 })
 </script>

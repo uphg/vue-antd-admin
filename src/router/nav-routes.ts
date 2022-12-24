@@ -65,5 +65,44 @@ export const navRoutes = [
         meta: { title: '部门管理' }
       },
     ]
+  },
+  {
+    path: '/level-menu',
+    redirect: '/level-menu/menu1',
+    meta: { title: '菜单嵌套' },
+    component: Layout,
+    name: 'LevelMenu',
+    type: 0,
+    children: [
+      {
+        path: '/level-menu/menu1',
+        component: () => import('@/views/level-menu/menu1/index.vue'),
+        name: 'LevelMenuMenu1',
+        meta: { title: '菜单1' },
+        children: [
+          {
+            path: '/level-menu/menu1/menu1-1',
+            component: () => import('@/views/level-menu/menu1/menu1-1/index.vue'),
+            name: 'LevelMenuMenu1Menu1-1',
+            meta: { title: '菜单1-1' },
+            children: [
+              {
+                path: '/level-menu/menu1/menu1-1/menu1-1-1',
+                component: () => import('@/views/level-menu/menu1/menu1-1/menu1-1-1/index.vue'),
+                name: 'LevelMenuMenu1Menu1-1Menu1-1-1',
+                type: 1,
+                meta: { title: '菜单1-1-1' }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        path: '/level-menu/menu2',
+        component: () => import('@/views/level-menu/menu2/index.vue'),
+        name: 'LevelMenuMenu2',
+        meta: { title: '菜单2' }
+      }
+    ]
   }
 ]

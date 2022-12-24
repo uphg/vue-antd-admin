@@ -1,19 +1,19 @@
 <template>
   <a-layout-sider class="sidebar" :style="sidebarStyle" :collapsed="collapsed" :trigger="null" width="210" collapsible>
     <Logo :collapsed="collapsed" />
-    <a-menu theme="dark" mode="inline" v-model="menuSelected" :openKeys.sync="subMenuSelected">
+    <a-menu theme="dark" mode="inline" v-model="menuSelected" :openKeys.sync="subMenuSelected" :inline-collapsed="collapsed">
       <!-- <a-menu-item>
         <a-icon :component="LoveSvg"></a-icon>
         <span>{{ '首页' }}</span>
       </a-menu-item> -->
-      <template v-for="item, index in menus">
-        <a-menu-item v-if="item?.type === 1" :key="handleItem(item)?.name">
+      <template v-for="item in menus">
+        <a-menu-item v-if="item?.type !== 0 || !item.children?.length" :key="handleItem(item)?.name">
           <SidebarLink :to="handleItem(item)?.path">
             <a-icon v-if="handleItem(item)?.meta?.icon" :type="handleItem(item)?.meta?.icon"/>
             <span>{{ handleItem(item)?.meta?.title }}</span>
           </SidebarLink>
         </a-menu-item>
-        <SubMenu v-else :menu-info="item" :key="item.name"></SubMenu>
+        <sub-menu v-else :menu-info="item" :key="item.name"></sub-menu>
       </template>
     </a-menu>
   </a-layout-sider>
