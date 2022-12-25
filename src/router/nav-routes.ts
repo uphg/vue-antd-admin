@@ -1,13 +1,12 @@
 import Layout from '../layout/index.vue'
 
-// 0 目录，1 菜单
+// 0 菜单，1 目录，2 按钮
 export const navRoutes = [
   {
     path: '/',
     redirect: '/home',
     component: Layout,
     name: 'Index',
-    type: 1,
     children: [
       {
         path: '/home',
@@ -22,7 +21,6 @@ export const navRoutes = [
     redirect: '/about/index',
     component: Layout,
     name: 'About',
-    type: 1,
     children: [
       {
         path: '/about/index',
@@ -35,10 +33,9 @@ export const navRoutes = [
   {
     path: '/system',
     redirect: '/system/account',
-    meta: { title: '权限管理', icon: 'heart' },
+    meta: { type: 1, title: '权限管理', icon: 'heart' },
     component: Layout,
     name: 'System',
-    type: 0,
     children: [
       {
         path: '/system/account',
@@ -69,10 +66,9 @@ export const navRoutes = [
   {
     path: '/level-menu',
     redirect: '/level-menu/menu1',
-    meta: { title: '菜单嵌套', icon: 'profile' },
+    meta: { type: 1, title: '菜单嵌套', icon: 'profile' },
     component: Layout,
     name: 'LevelMenu',
-    type: 0,
     children: [
       {
         path: '/level-menu/menu1',
@@ -90,7 +86,6 @@ export const navRoutes = [
                 path: '/level-menu/menu1/menu1-1/menu1-1-1',
                 component: () => import('@/views/level-menu/menu1/menu1-1/menu1-1-1/index.vue'),
                 name: 'LevelMenuMenu1Menu1-1Menu1-1-1',
-                type: 1,
                 meta: { title: '菜单1-1-1' }
               }
             ]

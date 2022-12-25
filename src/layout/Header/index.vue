@@ -1,11 +1,13 @@
 <template>
   <a-layout-header class="header">
-    <a-icon
-      class="sidebar-switch"
-      :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-      @click="changeSidebarSwitch"
-    />
-    <Breadcrumbs />
+    <div class="navbar">
+      <a-icon
+        class="sidebar-switch"
+        :type="collapsed ? 'menu-unfold' : 'menu-fold'"
+        @click="changeSidebarSwitch"
+      />
+      <Breadcrumbs />
+    </div>
   </a-layout-header>
 </template>
 
@@ -22,6 +24,10 @@ function changeSidebarSwitch() {
 
 <style lang="scss" scoped>
 .header {
+  padding: 0;
+  height: auto;
+}
+.navbar {
   height: 48px;
   padding: 0;
   display: flex;

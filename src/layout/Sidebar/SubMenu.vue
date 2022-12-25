@@ -18,14 +18,14 @@
 <script lang="ts">
 import { Menu } from 'ant-design-vue';
 import SidebarLink from './Link.vue'
-import type { SubMenu as _SubMenu } from '../../../types/sub-menu'
+import type { ASubMenu } from './types'
 
 export default defineComponent({
   name: 'SubMenu',
   components: { SidebarLink },
   isSubMenu: true,
   props: {
-    ...(Menu.SubMenu as unknown as _SubMenu).props,
+    ...(Menu.SubMenu as unknown as ASubMenu).props,
     // Cannot overlap with properties within Menu.SubMenu.props
     menuInfo: {
       type: Object,

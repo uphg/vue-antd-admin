@@ -7,7 +7,7 @@
         <span>{{ '导入 SVG 示例' }}</span>
       </a-menu-item> -->
       <template v-for="item in menus">
-        <a-menu-item v-if="item?.type !== 0 || !item.children?.length" :key="handleItem(item)?.name">
+        <a-menu-item v-if="isMenuItem(item)" :key="handleItem(item)?.name">
           <SidebarLink :to="handleItem(item)?.path">
             <a-icon v-if="handleItem(item)?.meta?.icon" :type="handleItem(item)?.meta?.icon"/>
             <span>{{ handleItem(item)?.meta?.title }}</span>
@@ -44,10 +44,12 @@ const sidebarStyle = {
   backgroundColor: '#001529'
 }
 
-
+function isMenuItem(item: RouteConfig) {
+  return !item.meta?.type || !item.children?.length
+}
 
 function handleItem(item: RouteConfig) {
-  return (item as RouteConfig & { type: number }).type === 1 ? item.children?.[0] : item
+  return (isMenuItem(item) ? item.children?.[0] : item)!
 }
 
 function updateMenuStatus() {
