@@ -1,9 +1,12 @@
 <template>
   <a-breadcrumb>
-    <a-breadcrumb-item v-for="item in breadcrumbs" :key="item.name">
-      <router-link :to="item.path">
+    <a-breadcrumb-item v-for="item, index in breadcrumbs" :key="item.name">
+      <router-link v-if="index <= breadcrumbs.length - 2" :to="item.path">
         {{ item.title }}
       </router-link>
+      <template v-else>
+        {{ item.title }}
+      </template>
     </a-breadcrumb-item>
     <!-- <a-breadcrumb-item><a href="">Application</a></a-breadcrumb-item>
     <a-breadcrumb-item>Center</a-breadcrumb-item> -->
