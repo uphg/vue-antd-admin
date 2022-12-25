@@ -4,7 +4,7 @@
     <a-menu theme="dark" mode="inline" v-model="menuSelected" :openKeys.sync="subMenuSelected" :inline-collapsed="collapsed">
       <!-- <a-menu-item>
         <a-icon :component="LoveSvg"></a-icon>
-        <span>{{ '首页' }}</span>
+        <span>{{ '导入 SVG 示例' }}</span>
       </a-menu-item> -->
       <template v-for="item in menus">
         <a-menu-item v-if="item?.type !== 0 || !item.children?.length" :key="handleItem(item)?.name">
@@ -21,7 +21,6 @@
 
 <script setup lang="ts">
 import Logo from './Logo.vue'
-import LoveSvg from './Love.vue'
 import { useSidebarStore } from '@/stores/sidebar'
 import { usePermissionStore } from '@/stores/permission';
 import SubMenu from './SubMenu.vue';
@@ -55,16 +54,14 @@ function updateMenuStatus() {
   if (route?.name) {
     const { matched, name } = route!
     if (matched.length > 1) {
-      const subMenus = matched.slice(0, matched.length - 1).map(item => item.name!)
+      const subMenus = matched.map(item => item.name!)
       subMenuSelected.value = subMenus.length ? subMenus : []
     }
     menuSelected.value = [name!]
   }
 }
 
-watchEffect(() => {
-  updateMenuStatus()
-})
+watchEffect(updateMenuStatus)
 </script>
 
 <style lang="scss" scoped>

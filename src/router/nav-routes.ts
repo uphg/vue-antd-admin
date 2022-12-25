@@ -35,7 +35,7 @@ export const navRoutes = [
   {
     path: '/system',
     redirect: '/system/account',
-    meta: { title: '权限管理' },
+    meta: { title: '权限管理', icon: 'heart' },
     component: Layout,
     name: 'System',
     type: 0,
@@ -69,7 +69,7 @@ export const navRoutes = [
   {
     path: '/level-menu',
     redirect: '/level-menu/menu1',
-    meta: { title: '菜单嵌套' },
+    meta: { title: '菜单嵌套', icon: 'profile' },
     component: Layout,
     name: 'LevelMenu',
     type: 0,

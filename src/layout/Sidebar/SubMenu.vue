@@ -1,13 +1,13 @@
 <template>
   <a-sub-menu :key="menuInfo?.name" v-bind="$props" v-on="$listeners">
     <span slot="title">
-      <a-icon type="mail" /><span>{{ menuInfo?.meta?.title }}</span>
+      <a-icon v-if="menuInfo.meta?.icon" :type="menuInfo.meta.icon" /><span>{{ menuInfo.meta?.title }}</span>
     </span>
     <template v-for="item in menuInfo?.children">
-      <a-menu-item v-if="!item?.children?.length" :key="item?.name">
+      <a-menu-item v-if="!item.children?.length" :key="item.name">
         <SidebarLink :to="item.path">
-          <a-icon v-if="item?.meta.icon" :type="item?.meta.icon"/>
-          <span>{{ item?.meta?.title }}</span>
+          <a-icon v-if="item.meta?.icon" :type="item.meta.icon"/>
+          <span>{{ item.meta?.title }}</span>
         </SidebarLink>
       </a-menu-item>
       <sub-menu v-else :key="item?.name" :menu-info="item" />

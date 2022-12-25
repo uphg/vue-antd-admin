@@ -1,8 +1,10 @@
 <script lang="ts">
-import type { PropType } from 'vue/types/v3-component-props';
 import { h } from 'vue';
-import type { Component } from 'vue/types/umd';
 import { RouterLink } from 'vue-router';
+import type { PropType } from 'vue/types/v3-component-props';
+import type { Component } from 'vue/types/umd';
+
+const reLinkPrefix = /^(https?:|mailto:|tel:)/
 
 export default defineComponent({
   name: 'SidebarLink',
@@ -13,9 +15,9 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    const isExternal = computed(() => /^(https?:|mailto:|tel:)/.test(props.to))
-    const tag = computed(() => isExternal.value ? 'a' : RouterLink as Component)
-    const linkProps = computed(() => isExternal.value
+    const isExternalLink = computed(() => reLinkPrefix.test(props.to))
+    const tag = computed(() => isExternalLink.value ? 'a' : RouterLink as Component)
+    const linkProps = computed(() => isExternalLink.value
       ? { href: props.to, target: '_blank', rel: 'noopener'}
       : { to: props.to }
     )
