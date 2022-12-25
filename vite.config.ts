@@ -15,7 +15,7 @@ export default defineConfig({
       targets: ['ie >= 11'],
       additionalLegacyPolyfills: ['regenerator-runtime/runtime']
     }),
-    unpluginVueComponents(),
+    unpluginVueComponents(), // default config: dirs: ['src/components']
     AutoImport({
       eslintrc: {
         enabled: true, // <-- this

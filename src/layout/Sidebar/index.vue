@@ -7,10 +7,10 @@
         <span>{{ '导入 SVG 示例' }}</span>
       </a-menu-item> -->
       <template v-for="item in menus">
-        <a-menu-item v-if="isMenuItem(item)" :key="handleItem(item)?.name">
-          <SidebarLink :to="handleItem(item)?.path">
-            <a-icon v-if="handleItem(item)?.meta?.icon" :type="handleItem(item)?.meta?.icon"/>
-            <span>{{ handleItem(item)?.meta?.title }}</span>
+        <a-menu-item v-if="isMenuItem(item)" :key="getMenu(item)?.name">
+          <SidebarLink :to="getMenu(item)?.path">
+            <a-icon v-if="getMenu(item)?.meta?.icon" :type="getMenu(item)?.meta?.icon"/>
+            <span>{{ getMenu(item)?.meta?.title }}</span>
           </SidebarLink>
         </a-menu-item>
         <sub-menu v-else :menu-info="item" :key="item.name"></sub-menu>
@@ -44,14 +44,6 @@ const sidebarStyle = {
   backgroundColor: '#001529'
 }
 
-function isMenuItem(item: RouteConfig) {
-  return !item.meta?.type || !item.children?.length
-}
-
-function handleItem(item: RouteConfig) {
-  return (isMenuItem(item) ? item.children?.[0] : item)!
-}
-
 function updateMenuStatus() {
   if (route?.name) {
     const { matched, name } = route!
@@ -61,6 +53,14 @@ function updateMenuStatus() {
     }
     menuSelected.value = [name!]
   }
+}
+
+function isMenuItem(item: RouteConfig) {
+  return !item.meta?.type || !item.children?.length
+}
+
+function getMenu(item: RouteConfig) {
+  return (isMenuItem(item) ? item.children?.[0] : item)!
 }
 
 watchEffect(updateMenuStatus)

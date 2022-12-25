@@ -8,8 +8,6 @@
         {{ item.title }}
       </template>
     </a-breadcrumb-item>
-    <!-- <a-breadcrumb-item><a href="">Application</a></a-breadcrumb-item>
-    <a-breadcrumb-item>Center</a-breadcrumb-item> -->
   </a-breadcrumb>
 </template>
 
@@ -17,7 +15,5 @@
 import { useRoute } from 'vue-router/composables';
 
 const route = useRoute()
-console.log('route')
-console.log(route)
 const breadcrumbs = computed(() => route.matched?.map((item) => ({ title: item.meta?.title, name: item.name, path: item.path })).filter(item => item.title))
 </script>
