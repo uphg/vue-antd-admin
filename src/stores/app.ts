@@ -1,14 +1,9 @@
 import { defineStore } from 'pinia'
 
-export const useAppStore = defineStore({
-  id: 'app',
-  state: () => ({
-    collapsed: false
-  }),
-
-  actions: {
-    setCollapsed(value: boolean) {
-      this.collapsed = value
-    }
+export const useAppStore = defineStore('app', () => {
+  const name = ref('')
+  function setName(value: string) {
+    name.value = value
   }
+  return { name, setName }
 })

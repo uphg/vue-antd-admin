@@ -1,14 +1,9 @@
 import { defineStore } from 'pinia'
 
-export const useSidebarStore = defineStore({
-  id: 'sidebar',
-  state: () => ({
-    collapsed: false
-  }),
-
-  actions: {
-    setCollapsed(value: boolean) {
-      this.collapsed = value
-    }
+export const useSidebarStore = defineStore('sidebar', () => {
+  const collapsed = ref(false)
+  function setCollapsed(value: boolean) {
+    collapsed.value = value
   }
+  return { collapsed, setCollapsed }
 })

@@ -6,7 +6,7 @@ type PermissionStore = { menus: Ref<RouteConfig[]>, setMenus: (value: RouteConfi
 
 export const usePermissionStore = defineStore<string, PermissionStore>('permission', () => {
   const menus = ref<RouteConfig[]>([])
-  function setMenus(value: RouteConfig[]) {
+  function setMenus<T extends RouteConfig[]>(value: T) {
     menus.value = value
   }
 
