@@ -2,17 +2,19 @@ import type { RouteConfig } from "vue-router"
 import Layout from '@/layout/index.vue'
 import type { MenuData } from './types'
 
+type CreateRoutesCallback = (item: RouteConfig, index: number) => MenuData
+
 const modules = import.meta.glob('../views/**/*.vue')
 
-export function generateRoutes(data: MenuData[]) {
+export function generateRoutes(data: MenuData[], callback?: CreateRoutesCallback) {
   const newRoute = handleTopLevelRoute(data)
-  return createRoutes(newRoute)
+  return createRoutes(newRoute, callback)
 }
 
-function createRoutes(data: MenuData[], callback?: (item: MenuData, index: number) => MenuData) {
+function createRoutes(data: MenuData[], callback?: CreateRoutesCallback) {
   const result: RouteConfig[] = []
   data.forEach((menu, index) => {
-    const item = callback ? callback(menu, index) : menu
+    const item = menu
     const componentPath = `../views${item?.component || toPath(item.path, 'index')}.vue`
     result[index] = {
       path: item.path,
@@ -21,8 +23,10 @@ function createRoutes(data: MenuData[], callback?: (item: MenuData, index: numbe
       meta: item.meta,
       component: item?.component === 'Layout' ? Layout : modules[componentPath],
     }
+
+    callback && callback(result[index], index)
     if (item.children?.length) {
-      result[index].children = createRoutes(item.children)
+      result[index].children = createRoutes(item.children, callback)
     }
   })
   return result

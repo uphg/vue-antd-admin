@@ -8,12 +8,15 @@
       />
       <Breadcrumbs />
     </div>
+    <TagsView />
   </a-layout-header>
 </template>
 
 <script setup lang="ts">
 import { useSidebarStore } from '@/stores/sidebar'
 import Breadcrumbs from './Breadcrumbs.vue'
+import TagsView from '../TagsView/index.vue'
+
 const sidebar = useSidebarStore()
 const collapsed = toRef(sidebar, 'collapsed')
 
@@ -26,6 +29,8 @@ function changeSidebarSwitch() {
 .header {
   padding: 0;
   height: auto;
+  line-height: 1.5;
+  background: transparent;
 }
 .navbar {
   height: 48px;
