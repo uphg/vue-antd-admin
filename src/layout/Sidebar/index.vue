@@ -20,13 +20,13 @@
 </template>
 
 <script setup lang="ts">
-import Logo from './Logo.vue'
-import { useSidebarStore } from '@/stores/sidebar'
-import { usePermissionStore } from '@/stores/permission';
-import SubMenu from './SubMenu.vue';
-import SidebarLink from './Link.vue'
 import type { RouteConfig } from 'vue-router';
 import { useRoute } from 'vue-router/composables'
+import { useSidebarStore } from '@/stores/sidebar'
+import { usePermissionStore } from '@/stores/permission';
+import Logo from './Logo.vue'
+import SubMenu from './SubMenu.vue';
+import SidebarLink from './Link.vue'
 
 const route = useRoute()
 
