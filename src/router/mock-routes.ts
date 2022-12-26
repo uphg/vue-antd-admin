@@ -9,7 +9,7 @@ export const mockRoutes: MenuData[] = [
       {
         path: '/home',
         component: '/home/index',
-        meta: { title: '首页', icon: 'home', affix: 1 }
+        meta: { title: '首页', icon: 'home'}
       }
     ]
   },
@@ -25,7 +25,7 @@ export const mockRoutes: MenuData[] = [
       {
         path: '/system/account',
         component: '/system/account',
-        meta: { title: '账号管理' }
+        meta: { title: '账号管理管理管理管理' }
       },
       {
         path: '/system/role',

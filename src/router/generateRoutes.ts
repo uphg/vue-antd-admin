@@ -39,6 +39,7 @@ function handleTopLevelRoute(data: MenuData[]) {
       const childPath = toPath(item.path, 'index')
       result[index] = {
         ...item,
+        meta: void 0,
         component: 'Layout',
         children: [{
           path: childPath,
