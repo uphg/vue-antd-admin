@@ -100,8 +100,9 @@ updataTagsView()
   border-top: 1px solid #f1f0f5;
   border-bottom: 1px solid #f1f0f5;
   &-container {
-    white-space: nowrap;
     width: 100%;
+    min-height: 32px;
+    white-space: nowrap;
     overflow: auto;
     &::-webkit-scrollbar {
       display: none;
