@@ -1,13 +1,6 @@
 <template>
   <div class="tags-view">
     <div ref="container" class="tags-view-container" @wheel.prevent="onScroll">
-      <!-- test -->
-      <!-- <div class="tag-item" v-for="item in 15" :key="item + 'a'">
-        <span class="text">{{ '标题' + item }}</span>
-        <span class="close">
-          <a-icon :component="CloseSvg"></a-icon>
-        </span>
-      </div> -->
       <div
         :class="['tag-item', { active: route.name === item.name }]"
         v-for="item in visiteds" :key="item.name"
@@ -19,13 +12,6 @@
           <a-icon :component="CloseSvg"></a-icon>
         </span>
       </div>
-      <!-- test -->
-      <!-- <div class="tag-item" v-for="item in 15" :key="item + 'b'">
-        <span class="text">{{ '标题' + 'b-' +item }}</span>
-        <span class="close">
-          <a-icon :component="CloseSvg"></a-icon>
-        </span>
-      </div> -->
     </div>
   </div>
 </template>
@@ -38,13 +24,15 @@ import { useRoute, useRouter } from 'vue-router/composables';
 import type { TagsViewItem } from '@/stores/tagsView';
 import type { Route, RouteConfig } from 'vue-router';
 
+const container = ref<HTMLElement | null>(null)
+const activeEl = ref<HTMLElement | null>(null)
+
 const route = useRoute()
 const router = useRouter()
 const TagsView = useTagsViewStore()
 const { menus } = usePermissionStore()
 const { visiteds } = toRefs(TagsView)
-const container = ref<HTMLElement | null>(null)
-const activeEl = ref<HTMLElement | null>(null)
+
 const { addVisiteds, deleteVisiteds } = TagsView
 
 function onScroll(e: WheelEvent) {
@@ -54,7 +42,7 @@ function onScroll(e: WheelEvent) {
 }
 
 function clickTag(item: TagsViewItem) {
-  RoutingJump(item)
+  toggleLink(item)
 }
 
 function close(item: TagsViewItem) {
@@ -68,7 +56,7 @@ function close(item: TagsViewItem) {
 function toLastTag() {
   const list = visiteds.value
   const last = list[list.length - 1]
-  RoutingJump(last ? last : menus[0])
+  toggleLink(last ? last : menus[0])
 }
 
 function addCachedTags(data: RouteConfig[]) {
@@ -82,7 +70,7 @@ function addCachedTags(data: RouteConfig[]) {
   })
 }
 
-function RoutingJump(value: TagsViewItem | RouteConfig) {
+function toggleLink(value: TagsViewItem | RouteConfig) {
   !isActiveRoute(value) && router.push({ path: value.path })
 }
 
@@ -96,18 +84,18 @@ function updateActiveTag(el: unknown, item: TagsViewItem) {
   }
 }
 
-function moveToActiveTag() {
-  const tag = activeEl.value
-  const wrap = container.value
+function scrollToActiveTag() {
+  const tag = activeEl.value!
+  const wrap = container.value!
   const { scrollLeft, offsetWidth } = wrap || { scrollLeft: 0, offsetWidth: 0 }
-  const { left: WrapLeft } = wrap?.getBoundingClientRect() || { left: 0, top: 0 }
-  const { left: tagLeft } = tag?.getBoundingClientRect?.() || { left: 0, top: 0 }
-
+  const { left: WrapLeft } = wrap.getBoundingClientRect()!
+  const { left: tagLeft } = tag.getBoundingClientRect()!
   const toParentLeft = tagLeft - WrapLeft
+
   if (toParentLeft < 0) {
-    wrap?.scroll(scrollLeft + toParentLeft, 0)
+    wrap.scroll(scrollLeft + toParentLeft, 0)
   } else if (offsetWidth < toParentLeft) {
-    wrap?.scroll((scrollLeft + (toParentLeft - offsetWidth) + (tag?.offsetWidth || 0)), 0)
+    wrap.scroll((scrollLeft + (toParentLeft - offsetWidth) + (tag?.offsetWidth || 0)), 0)
   }
 }
 
@@ -121,7 +109,7 @@ function updateTagsView() {
 
 watch(toRef(route, 'name'), () => {
   updateTagsView()
-  nextTick(moveToActiveTag)
+  nextTick(scrollToActiveTag)
 })
 
 addCachedTags(menus)
@@ -141,18 +129,6 @@ updateTagsView()
     &::-webkit-scrollbar {
       display: none;
     }
-    // &::-webkit-scrollbar {
-    //   width: 6px;
-    // }
-    // &::-webkit-scrollbar-thumb {
-    //   background-color: #0003;
-    //   border-radius: 10px;
-    //   transition: all .2s ease-in-out;
-    // }
-
-    // &::-webkit-scrollbar-track {
-    //   border-radius: 10px;
-    // }
   }
   .tag-item {
     font-size: 13px;

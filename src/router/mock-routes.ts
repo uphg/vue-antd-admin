@@ -13,6 +13,7 @@ export const mockRoutes: MenuData[] = [
       }
     ]
   },
+  // 可以根据简略的信息生成路由
   {
     path: '/about',
     meta: { title: '关于我', icon: 'bulb' }
@@ -25,7 +26,7 @@ export const mockRoutes: MenuData[] = [
       {
         path: '/system/account',
         component: '/system/account',
-        meta: { title: '账号管理管理管理管理' }
+        meta: { title: '账号管理' }
       },
       {
         path: '/system/role',
