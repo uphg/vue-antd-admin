@@ -1,3 +1,4 @@
+import 'virtual:svg-icons-register'
 import Vue from 'vue'
 import { createPinia, PiniaVuePlugin } from 'pinia'
 import App from './App.vue'
