@@ -1,7 +1,8 @@
 <template>
   <div class="tags-view">
     <div ref="container" class="tags-view-container" @wheel.prevent="onScroll">
-      <!-- <div class="tag-item" v-for="item in 20" :key="item">
+      <!-- test -->
+      <!-- <div class="tag-item" v-for="item in 15" :key="item + 'a'">
         <span class="text">{{ '标题' + item }}</span>
         <span class="close">
           <a-icon :component="CloseSvg"></a-icon>
@@ -10,7 +11,7 @@
       <div
         :class="['tag-item', { active: route.name === item.name }]"
         v-for="item in visiteds" :key="item.name"
-        :to="item.path"
+        :ref="(el) => updateActiveTag(el, item)"
         @click="clickTag(item)"
       >
         <span class="text">{{ item.meta?.title }}</span>
@@ -18,6 +19,13 @@
           <a-icon :component="CloseSvg"></a-icon>
         </span>
       </div>
+      <!-- test -->
+      <!-- <div class="tag-item" v-for="item in 15" :key="item + 'b'">
+        <span class="text">{{ '标题' + 'b-' +item }}</span>
+        <span class="close">
+          <a-icon :component="CloseSvg"></a-icon>
+        </span>
+      </div> -->
     </div>
   </div>
 </template>
@@ -36,6 +44,7 @@ const TagsView = useTagsViewStore()
 const { menus } = usePermissionStore()
 const { visiteds } = toRefs(TagsView)
 const container = ref<HTMLElement | null>(null)
+const activeEl = ref<HTMLElement | null>(null)
 const { addVisiteds, deleteVisiteds } = TagsView
 
 function onScroll(e: WheelEvent) {
@@ -81,7 +90,28 @@ function isActiveRoute(value: TagsViewItem | RouteConfig | Route) {
   return value.name === route.name || value.path === route.path || (value as RouteConfig).redirect === route.path
 }
 
-function updataTagsView() {
+function updateActiveTag(el: unknown, item: TagsViewItem) {
+  if (item.name === route.name) {
+    activeEl.value = el as HTMLElement
+  }
+}
+
+function moveToActiveTag() {
+  const tag = activeEl.value
+  const wrap = container.value
+  const { scrollLeft, offsetWidth } = wrap || { scrollLeft: 0, offsetWidth: 0 }
+  const { left: WrapLeft } = wrap?.getBoundingClientRect() || { left: 0, top: 0 }
+  const { left: tagLeft } = tag?.getBoundingClientRect?.() || { left: 0, top: 0 }
+
+  const toParentLeft = tagLeft - WrapLeft
+  if (toParentLeft < 0) {
+    wrap?.scroll(scrollLeft + toParentLeft, 0)
+  } else if (offsetWidth < toParentLeft) {
+    wrap?.scroll((scrollLeft + (toParentLeft - offsetWidth) + (tag?.offsetWidth || 0)), 0)
+  }
+}
+
+function updateTagsView() {
   route.name && addVisiteds({
     name: route.name!,
     path: route.path,
@@ -89,9 +119,13 @@ function updataTagsView() {
   })
 }
 
-watch(toRef(route, 'name'), updataTagsView)
+watch(toRef(route, 'name'), () => {
+  updateTagsView()
+  nextTick(moveToActiveTag)
+})
+
 addCachedTags(menus)
-updataTagsView()
+updateTagsView()
 </script>
 
 <style lang="scss" scoped>
@@ -101,7 +135,7 @@ updataTagsView()
   border-bottom: 1px solid #f1f0f5;
   &-container {
     width: 100%;
-    min-height: 32px;
+    min-height: 28px;
     white-space: nowrap;
     overflow: auto;
     &::-webkit-scrollbar {
@@ -121,11 +155,14 @@ updataTagsView()
     // }
   }
   .tag-item {
+    font-size: 13px;
+    color: inherit;
     cursor: pointer;
     min-width: 80px;
-    min-height: 32px;
+    min-height: 28px;
+    border-radius: 2px;
     padding: 4px 8px;
-    background-color: #f4f6f8;
+    background-color: #f4f5f5;
     display: inline-flex;
     justify-content: center;
     align-items: center;

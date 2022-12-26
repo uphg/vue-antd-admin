@@ -9,7 +9,7 @@ export const mockRoutes: MenuData[] = [
       {
         path: '/home',
         component: '/home/index',
-        meta: { title: '首页', icon: 'home'}
+        meta: { title: '首页', icon: 'home', affix: 1 }
       }
     ]
   },
