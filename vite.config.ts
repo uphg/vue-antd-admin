@@ -22,7 +22,7 @@ export default({ command }: ConfigEnv): UserConfig => ({
     }),
     unpluginVueComponents({
       resolvers: [
-        AntDVueResolver()
+        AntDVueResolver({ importStyle: 'less' })
       ]
     }), // default config: dirs: ['src/components']
     AutoImport({

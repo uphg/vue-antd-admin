@@ -36,8 +36,6 @@ export function AntDVueResolver(options: AntDVueResolverOptions = { importStyle:
   }
 }
 
-
-
 function getSideEffects(path: string, options: AntDVueResolverOptions) {
   if (cached.includes(path)) return
   cached.push(path)

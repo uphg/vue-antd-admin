@@ -1,6 +1,7 @@
 <template>
   <PageContainer>
     <h2>我是首页</h2>
+    <a-button type="primary">我是按钮</a-button>
     <a-button>hi</a-button><br>
     <router-link to="/about">去 关于</router-link><br>
     <router-link to="/system/account">去 账号管理</router-link><br>
