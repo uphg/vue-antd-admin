@@ -5,6 +5,18 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    ABreadcrumb: typeof import('ant-design-vue/lib/breadcrumb')['default']
+    ABreadcrumbItem: typeof import('ant-design-vue/lib/breadcrumb')['Breadcrumb']
+    AButton: typeof import('ant-design-vue/lib/button')['default']
+    ALayout: typeof import('ant-design-vue/lib/layout')['default']
+    ALayoutContent: typeof import('ant-design-vue/lib/layout')['Layout']
+    ALayoutHeader: typeof import('ant-design-vue/lib/layout')['Layout']
+    ALayoutSider: typeof import('ant-design-vue/lib/layout')['Layout']
+    AMenu: typeof import('ant-design-vue/lib/menu')['default']
+    AMenuItem: typeof import('ant-design-vue/lib/menu')['Menu']
+    ASubMenu: typeof import('ant-design-vue/lib/menu')['Menu']
+    Breadcrumb: typeof import('ant-design-vue/lib/breadcrumb')['default']
+    Button: typeof import('ant-design-vue/lib/button')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Icon: typeof import('./src/components/Icon/index.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
@@ -12,6 +24,8 @@ declare module 'vue' {
     IconEcosystem: typeof import('./src/components/icons/IconEcosystem.vue')['default']
     IconSupport: typeof import('./src/components/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
+    Layout: typeof import('ant-design-vue/lib/layout')['default']
+    Menu: typeof import('ant-design-vue/lib/menu')['default']
     PageContainer: typeof import('./src/components/PageContainer/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

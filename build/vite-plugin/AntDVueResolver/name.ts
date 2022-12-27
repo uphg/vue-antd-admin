@@ -1,0 +1,30 @@
+
+export const groupNames: [string, RegExp][] = [
+  ['Button', /^Button(Group)?$/],
+  ['Layout', /^Layout(Header|Sider|Content|Footer)?$/],
+  ['Breadcrumb', /^Breadcrumb(Item|Separator)?$/],
+  ['Dropdown', /^Dropdown(Button)?$/],
+  ['Menu', /^Menu(Item(Group)?)?$|^(Sub)?Menu$/],
+  ['Steps', /^Step(s)?$/],
+  ['Checkbox', /^Checkbox(Group)?$/],
+  ['DatePicker', /^(Date|Month|Range|Week|Quarter)Picker$/],
+  ['Form', /^Form(Item(Rest)?)?$/],
+  ['FormModel', /^FormModel(Item)?$/],
+  ['Input', /^Input(Group|Password|Search)?$|^Textarea$/],
+  ['Mentions', /^Mentions(option)?$/],
+  ['Radio', /^Radio(Group|Button)?$/],
+  ['Select', /^Select(Option|OptGroup)?$/],
+  ['TreeSelect', /^TreeSelect(Node)?$/],
+  ['Card', /^Card(Grid|Meta)?$/],
+  ['Collapse', /^Collapse(Panel)?$/],
+  ['Descriptions', /^Descriptions(Item)?$/],
+  ['List', /^List(Item(Meta)?)?$/],
+  ['Statistic', /^Statistic(Countdown)?$/],
+  ['Tabs', /^Tabs$|^TabPane$/],
+  ['Tag', /^(Checkable)?Tag$/],
+  ['Timeline', /^Timeline(Item)?$/],
+  ['Tree', /^Tree(Node)?$|^DirectoryTree$/],
+  ['Anchor', /^Anchor(Link)?$/],
+]
+
+export const singleNames = ['Affix', 'AutoComplete', 'AutoCompleteOptGroup', 'AutoCompleteOption', 'Alert', 'Avatar', 'AvatarGroup', 'BackTop', 'Badge', 'BadgeRibbon', 'Calendar', 'Carousel', 'Cascader', 'Col', 'Comment', 'ConfigProvider', 'Divider', 'Drawer', 'Empty', 'Grid', 'Image', 'ImagePreviewGroup', 'InputNumber', 'Modal', 'PageHeader', 'Pagination', 'Popconfirm', 'Popover', 'Progress', 'Rate', 'Result', 'Row', 'Skeleton', 'SkeletonButton', 'SkeletonAvatar', 'SkeletonInput', 'SkeletonImage', 'Slider', 'Space', 'Spin', 'Switch', 'Table', 'TableColumn', 'TableColumnGroup', 'TableSummary', 'TableSummaryRow', 'TableSummaryCell', 'Transfer', 'TimePicker', 'TimeRangePicker', 'Tooltip', 'Typography', 'TypographyLink', 'TypographyParagraph', 'TypographyText', 'TypographyTitle', 'Upload', 'UploadDragger', 'LocaleProvider']

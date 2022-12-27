@@ -8,6 +8,7 @@ import unpluginVueComponents from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { antdvFix } from './build/vite-plugin'
+import { AntDVueResolver } from './build/vite-plugin';
 
 // https://vitejs.dev/config/
 export default({ command }: ConfigEnv): UserConfig => ({
@@ -19,7 +20,11 @@ export default({ command }: ConfigEnv): UserConfig => ({
       targets: ['ie >= 11'],
       additionalLegacyPolyfills: ['regenerator-runtime/runtime']
     }),
-    unpluginVueComponents(), // default config: dirs: ['src/components']
+    unpluginVueComponents({
+      resolvers: [
+        AntDVueResolver()
+      ]
+    }), // default config: dirs: ['src/components']
     AutoImport({
       eslintrc: {
         enabled: true, // <-- this
@@ -37,7 +42,6 @@ export default({ command }: ConfigEnv): UserConfig => ({
     createSvgIconsPlugin({
       iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
       svgoOptions: command === 'build',
-      // default
       symbolId: 'icon-[dir]-[name]',
     }),
     antdvFix()

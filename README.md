@@ -1,4 +1,4 @@
-# Vue Antd Admin
+# Vue Best Admin
 
 Vite + Vue 2.7 + TS + Antd-vue 后台管理模板
 
@@ -8,7 +8,7 @@ Vite + Vue 2.7 + TS + Antd-vue 后台管理模板
 - 📦 [组件自动化加载](./src/components)
 - 🍍 [使用 Pinia 的状态管理](https://pinia.vuejs.org)
 - 🔥 使用 [新的 `<script setup>` 语法](https://github.com/vuejs/rfcs/pull/227)
-- 🦾 TypeScript
+- 🦾 TypeScript 支持
 
 ## 使用
 
