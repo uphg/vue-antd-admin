@@ -55,12 +55,12 @@ function handleTopLevelRoute(data: MenuData[]) {
   return result
 }
 
-export function createRouteName(item: MenuData) {
+function createRouteName(item: MenuData) {
   const paths = item.path.trim().split(/\/|-|_/).filter(item => !!item)
   return paths.map(item => item.replace(/^(\w)/, (_, p) => p.toUpperCase())).join('')
 }
 
-export function toPath(_path: string, suffix?: string) {
+function toPath(_path: string, suffix?: string) {
   const path = _path.trim()
   const newPath = (/^\/[^/]/.test(path) ? '' : '/') + path + (/[^/]\/$/.test(path) ? '' : '/')
   return newPath + suffix || ''

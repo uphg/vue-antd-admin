@@ -3,15 +3,24 @@ import type { AntDVueResolverOptions } from './types'
 import { singleNames, groupNames } from './name'
 import { kebabCase } from '../../utils'
 
-const cached: string[] = []
-
 /**
  * Resolver for Ant Design of Vue
  * @link https://1x.antdv.com/docs/vue/introduce-cn/
- * @version @ant-design-vue ^1.7.8, @vue ^2.7.7
+ * @version @ant-design-vue ^1.7.8, @vue ^2.7.14
  * @author @nabaonan
  */
 export function AntDVueResolver(options: AntDVueResolverOptions = { importStyle: 'css' }): ComponentResolver {
+  const cached: string[] = []
+
+  function getSideEffects(path: string, options: AntDVueResolverOptions) {
+    if (cached.includes(path)) return
+    cached.push(path)
+    return {
+      from: path,
+      sideEffects: `${path}/style/${options.importStyle === 'css' ? 'css' : 'index'}.js`
+    }
+  }
+
   return {
     type: 'component',
     resolve: (name: string) => {
@@ -33,14 +42,5 @@ export function AntDVueResolver(options: AntDVueResolverOptions = { importStyle:
         }
       }
     },
-  }
-}
-
-function getSideEffects(path: string, options: AntDVueResolverOptions) {
-  if (cached.includes(path)) return
-  cached.push(path)
-  return {
-    from: path,
-    sideEffects: `${path}/style/${options.importStyle === 'css' ? 'css' : 'index'}.js`
   }
 }

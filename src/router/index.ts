@@ -11,7 +11,17 @@ Vue.use(VueRouter)
 const router = createRouter({
   mode: 'history',
   base: import.meta.env.BASE_URL,
-  routes: baseRoutes/* navRoutes */
+  routes: [
+    ...baseRoutes,
+    {
+      path: '/login',
+      component: () => import('@/views/login/index.vue')
+    },
+    {
+      path: '/register',
+      component: () => import('@/views/register/index.vue')
+    },
+  ]/* navRoutes */
 })
 
 export default router
