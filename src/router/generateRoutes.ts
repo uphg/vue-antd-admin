@@ -1,4 +1,4 @@
-import type { RouteConfig } from "vue-router"
+import type { RouteConfig } from 'vue-router'
 import Layout from '@/layout/index.vue'
 import type { MenuData } from './types'
 

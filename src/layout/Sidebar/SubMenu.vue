@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { Menu } from 'ant-design-vue';
+import { Menu } from 'ant-design-vue'
 import SidebarLink from './Link.vue'
 import type { ASubMenu } from './types'
 

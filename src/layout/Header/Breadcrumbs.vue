@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'vue-router/composables';
+import { useRoute } from 'vue-router/composables'
 
 const route = useRoute()
 const breadcrumbs = computed(() => route.matched?.map((item) => ({ title: item.meta?.title, name: item.name, path: item.path })).filter(item => item.title))

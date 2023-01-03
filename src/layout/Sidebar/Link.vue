@@ -1,8 +1,8 @@
 <script lang="ts">
-import { h } from 'vue';
-import { RouterLink } from 'vue-router';
-import type { PropType } from 'vue/types/v3-component-props';
-import type { Component } from 'vue/types/umd';
+import { h } from 'vue'
+import { RouterLink } from 'vue-router'
+import type { PropType } from 'vue/types/v3-component-props'
+import type { Component } from 'vue/types/umd'
 
 const reLinkPrefix = /^(https?:|mailto:|tel:)/
 

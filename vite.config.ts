@@ -1,6 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
 import * as path from 'node:path'
-import type { UserConfig, ConfigEnv } from 'vite';
+import type { UserConfig, ConfigEnv } from 'vite'
 import legacy from '@vitejs/plugin-legacy'
 import vue2 from '@vitejs/plugin-vue2'
 import vue2Jsx from '@vitejs/plugin-vue2-jsx'
@@ -8,7 +8,7 @@ import unpluginVueComponents from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { antdvFix } from './build/vite-plugin'
-import { AntDVueResolver } from './build/vite-plugin';
+import { AntDVueResolver } from './build/vite-plugin'
 
 // https://vitejs.dev/config/
 export default({ command }: ConfigEnv): UserConfig => ({

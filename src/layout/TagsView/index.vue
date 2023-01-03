@@ -17,12 +17,12 @@
 </template>
 
 <script setup lang="ts">
-import CloseSvg from './CloseSvg.vue';
+import CloseSvg from './CloseSvg.vue'
 import { usePermissionStore } from '@/stores/permission'
 import { useTagsViewStore } from '@/stores/tagsView'
-import { useRoute, useRouter } from 'vue-router/composables';
-import type { TagsViewItem } from '@/stores/tagsView';
-import type { Route, RouteConfig } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router/composables'
+import type { TagsViewItem } from '@/stores/tagsView'
+import type { Route, RouteConfig } from 'vue-router'
 
 const container = ref<HTMLElement | null>(null)
 const activeEl = ref<HTMLElement | null>(null)

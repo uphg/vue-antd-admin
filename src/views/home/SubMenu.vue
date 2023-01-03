@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { Menu } from 'ant-design-vue';
+import { Menu } from 'ant-design-vue'
 
 export default defineComponent({
   name: 'SubMenu',
