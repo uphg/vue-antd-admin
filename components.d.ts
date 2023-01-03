@@ -5,10 +5,6 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    ABreadcrumb: typeof import('ant-design-vue/lib/breadcrumb')['default']
-    AButton: typeof import('ant-design-vue/lib/button')['default']
-    ALayout: typeof import('ant-design-vue/lib/layout')['default']
-    AMenu: typeof import('ant-design-vue/lib/menu')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Icon: typeof import('./src/components/Icon/index.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
